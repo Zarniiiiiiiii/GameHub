@@ -13,7 +13,7 @@ const firebaseConfig = {
     messagingSenderId: "886094702335",
     appId: "1:886094702335:web:b4fe195cf0a4ac7d6fceca",
     measurementId: "G-3WJ9ZG2S1T",
-    databaseURL: "https://gamehub-b09f8-default-rtdb.firebaseio.com"
+    databaseURL: "https://gamehub-b09f8-default-rtdb.europe-west1.firebasedatabase.app"
 };
 
 // Initialize Firebase

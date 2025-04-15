@@ -1,4 +1,4 @@
-import db from './firebase/database.js';
+import { getGames, getTopScores, saveScore } from './firebase/database.js';
 import { auth } from './firebase/config.js';
 
 // DOM Elements
@@ -26,7 +26,7 @@ const games = [
 async function initGameHub() {
     try {
         // Load games from Firebase
-        const firebaseGames = await db.getGames();
+        const firebaseGames = await getGames();
         if (firebaseGames) {
             games.push(...firebaseGames);
         }
@@ -88,7 +88,7 @@ function createGameCard(game) {
 // Display leaderboard
 async function displayLeaderboard() {
     try {
-        const topScores = await db.getTopScores('game1'); // Example for game1
+        const topScores = await getTopScores('game1'); // Example for game1
         if (topScores) {
             const scoresHTML = Object.entries(topScores)
                 .map(([userId, data]) => `
@@ -103,14 +103,15 @@ async function displayLeaderboard() {
             leaderboardContainer.innerHTML = '<p>No scores yet</p>';
         }
     } catch (error) {
-        throw error; // Re-throw to be handled by the caller
+        console.error('Error displaying leaderboard:', error);
+        leaderboardContainer.innerHTML = '<p>Error loading leaderboard</p>';
     }
 }
 
-// Load a specific game
+// Load game
 function loadGame(gameId) {
-    // This will be implemented based on how you want to load your games
-    window.location.href = `games/${gameId}/index.html`;
+    // Implementation for loading a specific game
+    console.log('Loading game:', gameId);
 }
 
 // Search functionality
